@@ -103,3 +103,4 @@ cython_debug/
 
 # EnvKeep
 .envkeep/ 
+.env.key

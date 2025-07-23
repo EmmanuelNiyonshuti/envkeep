@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["envkeep"] 
+
+[project]
+name = "envkeep"
+version = "0.1.0"
+description = "CLI tool to manage encrypted .env files"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [{ name = "Emmanuel", email = "emmanuelniyonshuti13@gmail.com" }]
+dependencies = [
+    "cryptography>=45.0.5",
+    "typer>=0.16.0",
+    "python-dotenv>=1.0.0"
+]
+[project.scripts]
+envkeep = "envkeep.cli:app"
