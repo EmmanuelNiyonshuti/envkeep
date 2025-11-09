@@ -101,6 +101,3 @@ cython_debug/
 # VS Code
 .vscode/
 
-# EnvKeep
-.envkeep/ 
-.env.key

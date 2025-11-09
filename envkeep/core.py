@@ -48,7 +48,6 @@ def encrypt_file(input_path: Path, output_path: Path, key: bytes) -> bool:
         typer.secho(f"Encryption failed: {e}", fg=typer.colors.RED)
         return False
 
-
 def decrypt_file(input_path: Path, output_path: Path, key: bytes) -> bool:
     try:
         # read from the .env.encrypted file

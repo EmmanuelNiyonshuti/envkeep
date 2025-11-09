@@ -11,8 +11,13 @@ Backing up and restoring encrypted .env files
 
 Viewing project status
 
-Built with Typer and Cryptography
+## Currently:
+```
+Local Machine → Encrypt → Commit .env.encrypted → Push to remote repo
+Clone Later → Manually decrypt with key → Work
 
+Built with Typer and Cryptography
+```
 ## Usage
 
 ```bash
@@ -31,16 +36,10 @@ See `envkeep --help` for all options.
 - [cryptography](https://pypi.org/project/cryptography/)
 - [typer](https://pypi.org/project/typer/)
 
-## Example .env
-```
-SECRET_KEY=supersecret
-DATABASE_URL=sqlite:///db.sqlite3
-DEBUG=True
-```
 
 ## Security
 - The encryption key is never stored in the repository.
-- You must set the `ENVKEEP_KEY` environment variable or save the generated key securely.
+- You must set the `ENVKEEP_KEY` environment variable or Manually save your encryption key somewhere safe
 
 ## License
 MIT

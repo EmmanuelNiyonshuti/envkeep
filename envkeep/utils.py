@@ -50,25 +50,13 @@ def file_exists(path: Path) -> bool:
     return path.exists()
 
 
-def ensure_gitignore_has_envkeep():
+def ensure_gitignore(filename: str = ".envkeep"):
     gitignore = Path(".gitignore")
     if not gitignore.exists():
         with open(gitignore, "w") as f:
-            f.write(".envkeep/\n")
+            f.write(f"{filename}/\n")
         return
     with open(gitignore, "r+") as f:
         lines = f.readlines()
-        if ".envkeep/" not in [l.strip() for l in lines]:
-            f.write("\n.envkeep/\n")
-
-
-def ensure_file_in_gitignore(filename: str):
-    gitignore = Path(".gitignore")
-    if not gitignore.exists():
-        with open(gitignore, "w") as f:
-            f.write(f"{filename}\n")
-        return
-    with open(gitignore, "r+") as f:
-        lines = f.readlines()
-        if filename not in [l.strip() for l in lines]:
-            f.write(f"\n{filename}\n")
+        if f"{filename}/" not in [l.strip() for l in lines]:
+            f.write(f"\n{filename}/\n")

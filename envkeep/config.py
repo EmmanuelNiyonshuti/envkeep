@@ -8,7 +8,7 @@ DEFAULT_ENV_FILE = Path(".env")
 DEFAULT_ENCRYPTED_FILE = Path(".env.encrypted")
 
 ENVKEEP_KEY_ENV = "ENVKEEP_KEY"
-FERNET_KEY_LENGTH = 44  # Fernet key is 32 bytes, base64 encoded
+FERNET_KEY_LENGTH = 44
 FERNET_KEY_PATTERN = r"[A-Za-z0-9_-]{43}="
 
 # Project metadata keys

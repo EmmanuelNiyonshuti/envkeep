@@ -7,7 +7,6 @@ from . import config, core, utils
 
 app = typer.Typer(help="EnvKeep: Securely manage your .env files per project.")
 
-
 @app.command()
 def init():
     """Initialize the current project for envkeep usage."""
@@ -24,24 +23,22 @@ def init():
         config.CONFIG_KEYS["last_backup"]: None,
     }
     utils.write_json(config.CONFIG_FILE, meta)
-    utils.ensure_gitignore_has_envkeep()
-    # Add .env.key to .gitignore
+    utils.ensure_gitignore()
     if Path(".env.key").exists() or os.environ.get(config.ENVKEEP_KEY_ENV):
         typer.secho(
             "ENVKEEP_KEY found in environment or .env.key file.", fg=typer.colors.GREEN
         )
         return
     new_key = core.generate_key()
-    # Write key to .env.key
     with open(".env.key", "w") as f:
         f.write(f"ENVKEEP_KEY={new_key}\n")
-    utils.ensure_file_in_gitignore(".env.key")
+    utils.ensure_gitignore(".env.key")
     typer.secho(
         "No ENVKEEP_KEY found. A new key has been generated and written to .env.key.",
         fg=typer.colors.BLUE,
     )
     typer.secho(
-        "Keep .env.key secret! It is required to decrypt your encrypted .env files.",
+        "Keep .env.key secret! It is required to decrypt your encrypted .env file.",
         fg=typer.colors.YELLOW,
         bold=True,
     )
@@ -190,6 +187,15 @@ def status():
         )
     except Exception as e:
         typer.secho(f"Key is not set: {e}", fg=typer.colors.RED)
+
+
+
+@app.command()
+def push():
+    """ push encrypted file"""
+@app.command()
+def pull():
+    """ pull encrypted file"""
 
 
 if __name__ == "__main__":

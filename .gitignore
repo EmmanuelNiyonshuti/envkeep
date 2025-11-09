@@ -8,11 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
-
+.vscode
+.env
+envkeep.egg-info
 
 .envkeep/
 
-.env.key
-.env.encrypted
-.env
-envkeep.egg-info
+.env.key/
