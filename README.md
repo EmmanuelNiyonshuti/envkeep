@@ -1,40 +1,59 @@
-# envkeep CLI
+# envkeep
 
-A simple CLI tool I use to manage encrypted .env files in Python projects.
-Still evolving, but currently supports:
+Personal CLI tool for managing encrypted .env files in my Python projects.
 
-Project initialization for secure .env management
+## What it does
 
-Encrypting and decrypting .env files with symmetric encryption
+- Encrypts .env files so I can commit them safely to git
+- Decrypts them when I clone projects later
+- Keeps backups with timestamps
 
-Backing up and restoring encrypted .env files
+## Installation
 
-Viewing project status
-
-
-Built with Typer and Cryptography
-```
-## Usage
-
+In your project's virtual environment:
 ```bash
-envkeep init
-envkeep encrypt [--file .env]
-envkeep decrypt [--file .env.encrypted]
-envkeep backup
-envkeep restore [--backup TIMESTAMP]
-envkeep status
+# with uv
+uv pip install git+https://github.com/EmmanuelNiyonshuti/envkeep.git
+
+# with pip
+pip install git+https://github.com/EmmanuelNiyonshuti/envkeep.git
 ```
 
-See `envkeep --help` for all options.
+## Usage
+```bash
+# First time in a project
+envkeep init                    # creates .envkeep/ folder and encryption key
+envkeep encrypt                 # creates .env.encrypted from .env
+git add .env.encrypted .envkeep/
+git commit -m "add encrypted env"
+
+# Make sure .env and .env.key are in .gitignore
+
+# When cloning later
+git clone <your-repo>
+cd <your-repo>
+export ENVKEEP_KEY=<your-saved-key>  # get this from where you saved your key
+envkeep decrypt                       # recreates .env
+
+# Other commands
+envkeep backup                  # backup current .env.encrypted
+envkeep restore --backup <timestamp>
+envkeep status                  # show project info
+```
+
+## Important
+
+- After `envkeep init`, save the key from `.env.key` somewhere safe (e.g: password manager)
+- The key is needed to decrypt on other machines
+- Never commit `.env` or `.env.key` to git
+
+## Example .gitignore
+```
+.env
+.env.key
+```
 
 ## Requirements
-- Python 3.11+
-- [cryptography](https://pypi.org/project/cryptography/)
-- [typer](https://pypi.org/project/typer/)
 
-
-## Security
-- The encryption key is never stored in the repository.
-- You must set the `ENVKEEP_KEY` environment variable
-## License
-MIT
+- Python 3.8+
+- Virtual environment (recommended)
