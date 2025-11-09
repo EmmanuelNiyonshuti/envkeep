@@ -11,10 +11,6 @@ Backing up and restoring encrypted .env files
 
 Viewing project status
 
-## Currently:
-```
-Local Machine → Encrypt → Commit .env.encrypted → Push to remote repo
-Clone Later → Manually decrypt with key → Work
 
 Built with Typer and Cryptography
 ```
