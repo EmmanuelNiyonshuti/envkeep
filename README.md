@@ -39,7 +39,6 @@ See `envkeep --help` for all options.
 
 ## Security
 - The encryption key is never stored in the repository.
-- You must set the `ENVKEEP_KEY` environment variable or Manually save your encryption key somewhere safe
-
+- You must set the `ENVKEEP_KEY` environment variable
 ## License
 MIT
