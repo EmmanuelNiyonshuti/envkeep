@@ -1,10 +1,10 @@
 import json
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 import typer
 
 
-def read_json(path: Path) -> Optional[dict[str, Any]]:
+def read_json(path: Path) -> dict[str, Any] | None:
     if not path.exists():
         return None
     try:

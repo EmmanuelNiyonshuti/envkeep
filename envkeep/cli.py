@@ -2,7 +2,6 @@ import os
 from datetime import datetime
 from pathlib import Path
 import typer
-from typing import Optional
 from . import config, core, utils
 
 app = typer.Typer(help="EnvKeep: Securely manage your .env files per project.")
@@ -124,7 +123,7 @@ def backup():
 
 @app.command()
 def restore(
-    backup: Optional[str] = typer.Option(
+    backup: str | None = typer.Option(
         None, "--backup", help="Timestamp of backup to restore"
     ),
 ):

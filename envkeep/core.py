@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-from typing import Optional
 from cryptography.fernet import Fernet, InvalidToken
 import typer
 from dotenv import load_dotenv
@@ -9,7 +8,7 @@ import re
 from .config import ENVKEEP_KEY_ENV, FERNET_KEY_LENGTH, FERNET_KEY_PATTERN
 
 
-def get_key() -> Optional[bytes]:
+def get_key() -> bytes | None:
     key = os.environ.get(ENVKEEP_KEY_ENV)
     if not key:
         key_path = Path(".env.key")
